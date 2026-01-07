@@ -1,5 +1,28 @@
+
+
 https://docs.google.com/spreadsheets/d/1nTLfdCPN1YvAIOTuDL4xiG5X5Apk8ltvpgGGbGP86AY/edit?usp=sharing
 
+```python
+
+#model insallation 
+!pip install git+https://github.com/huggingface/diffusers 
+
+```
+
+```python
+from os import pipe 
+from diffusers import StableDiffusionPipeline 
+import torch 
+m_id = "sd-legacy/stable-diffusion-v1-5" 
+pipe=StableDiffusionPipeline.from_pretrained(m_id) 
+pipe=pipe.to("cuda") #cpu 
+
+prompt = "an astronut riding a horse in the moon" 
+image =pipe(prompt).images[0] 
+display(image) 
+
+
+```
 ```python
 
 A simple Python chatbot built with Flask and LangChain that uses Google’s Gemini model to generate AI responses through a clean interface.
