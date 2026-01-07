@@ -2,6 +2,37 @@ https://docs.google.com/spreadsheets/d/1nTLfdCPN1YvAIOTuDL4xiG5X5Apk8ltvpgGGbGP8
 
 
 ```python
+from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
+
+# Initialize the model
+model = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    google_api_key=os.getenv("GOOGLE_API_KEY")
+)
+
+print("🤖 Gemini AI Bot (Terminal Mode)")
+print("Type 'exit' to quit\n")
+
+while True:
+    user_msg = input("You: ")
+
+    if user_msg.lower() in ["exit", "quit"]:
+        print("👋 Exiting AI Bot. Bye!")
+        break
+
+    response = model.invoke(user_msg)
+    print("AI:", response.content)
+    print("-" * 50)
+
+
+```
+
+```python
 from flask import Flask, render_template, request
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
