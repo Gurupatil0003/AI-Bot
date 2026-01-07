@@ -1,5 +1,12 @@
 https://docs.google.com/spreadsheets/d/1nTLfdCPN1YvAIOTuDL4xiG5X5Apk8ltvpgGGbGP86AY/edit?usp=sharing
 
+```python
+Terminal-Based Gemini AI Chatbot
+
+One-line Description:
+A lightweight Python CLI chatbot that interacts with Google’s Gemini model directly from the terminal without Flask or exception handling.
+
+```
 
 ```python
 from langchain_google_genai import ChatGoogleGenerativeAI
