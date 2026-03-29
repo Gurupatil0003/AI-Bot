@@ -204,3 +204,89 @@ GOOGLE_API_KEY=
 
 
 ```
+
+```python
+from gtts import gTTS
+from IPython.display import Audio
+
+text=input()
+
+tts=gTTS(text=text,lang="en",tld="co.in",slow=True)
+tts.save("o.mp3")
+Audio("o.mp3")
+
+
+```
+
+```python
+
+!pip install deep-translator
+from deep_translator import GoogleTranslator
+
+translated = GoogleTranslator(source='auto', target='kn').translate("hello")
+print(translated)
+
+```
+
+
+```python
+from gtts import gTTS
+from IPython.display import Audio
+
+text=input()
+
+tts=gTTS(text=text,lang="en",tld="co.in",slow=True)
+tts.save("o.mp3")
+Audio("o.mp3")
+
+
+```
+
+
+```python
+!pip install diffusers
+from os import pipe 
+from diffusers import StableDiffusionPipeline 
+import torch 
+m_id = "sd-legacy/stable-diffusion-v1-5" 
+pipe=StableDiffusionPipeline.from_pretrained(m_id) 
+pipe=pipe.to("cuda") #cpu 
+
+prompt = "an astronut riding a horse in the moon" 
+image =pipe(prompt).images[0] 
+display(image) 
+
+
+
+
+```
+
+
+```python
+from transformers import pipeline
+
+# Load code generation model
+generator = pipeline("text-generation", model="Salesforce/codegen-350M-mono")
+
+# Prompt for code
+prompt = "Write a Python function to check if a number is prime:\n"
+
+# Generate code
+output = generator(
+    prompt,
+    max_length=120,
+    temperature=0.2,   # low = more accurate code
+    num_return_sequences=1
+)
+
+# Print result
+print(output[0]['generated_text'])
+
+```
+
+
+```python
+
+
+
+```
