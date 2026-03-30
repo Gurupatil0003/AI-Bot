@@ -287,6 +287,12 @@ print(output[0]['generated_text'])
 
 ```python
 
+from transformers import pipeline
 
+generator = pipeline('text-generation', model='distilgpt2')
+
+output = generator("I love coding because", max_length=30)
+
+print(output[0]['generated_text'])
 
 ```
