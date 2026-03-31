@@ -296,3 +296,62 @@ output = generator("I love coding because", max_length=30)
 print(output[0]['generated_text'])
 
 ```
+
+```python
+from transformers import pipeline
+import gradio as gr
+
+# Load model
+generator = pipeline('text-generation', model='distilgpt2')
+
+# Function for Gradio
+def generate_text(prompt):
+    output = generator(prompt, max_length=10)
+    return output[0]['generated_text']
+
+# Gradio Interface
+interface = gr.Interface(
+    fn=generate_text,
+    inputs=gr.Textbox(lines=2, placeholder="Enter your prompt here..."),
+    outputs="text",
+    title="Simple Text Generator",
+    description="Generate text using distilgpt2"
+)
+
+# Launch app
+interface.launch()
+
+
+```
+
+```python
+
+
+
+# Function for Gradio
+def generate_text(prompt):
+    output = generator(
+        prompt,
+        max_length=100,          # increase length
+        temperature=0.7,         # control randomness
+        top_k=50,
+        top_p=0.95,
+        repetition_penalty=1.2,  # reduce repetition
+        do_sample=True
+    )
+    return output[0]['generated_text']
+
+# Gradio Interface
+interface = gr.Interface(
+    fn=generate_text,
+    inputs=gr.Textbox(lines=2, placeholder="Enter your prompt here..."),
+    outputs="text",
+    title="Simple Text Generator",
+    description="Generate text using distilgpt2"
+)
+
+# Launch app
+interface.launch()
+
+
+```
