@@ -355,3 +355,39 @@ interface.launch()
 
 
 ```
+
+```python
+import transformers
+import torch
+from transformers import AutoTokenizer
+
+model_id = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+
+pipeline = transformers.pipeline(
+    "text-generation",
+    model=model_id,
+    tokenizer=tokenizer,
+    model_kwargs={"torch_dtype": torch.float32},
+    device_map="auto",
+)
+
+messages = [
+    {"role": "system", "content": "You are a personal assistant."},
+    {"role": "user", "content": "can u make plan for me tommorow"},
+]
+
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+
+outputs = pipeline(
+    prompt,
+    max_new_tokens=150,
+    temperature=0.7,
+)
+
+print(outputs[0]["generated_text"])
+
+
+
+```
