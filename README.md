@@ -391,3 +391,43 @@ print(outputs[0]["generated_text"])
 
 
 ```
+
+```python
+import os
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import SystemMessage, HumanMessage
+
+# Set API key directly in Colab (simplest way)
+os.environ["GOOGLE_API_KEY"] = "AIzaSyA8NQUVkhIN0iIKSIt8L28gDAkNVt6_ld4"
+
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+
+system_message = SystemMessage(
+    content="""
+You are a personal diet planner.
+
+- Only answer diet, nutrition, and health questions.
+- If anything else is asked, reply:
+  "I only help with diet planning."
+- Give simple meal plans (breakfast, lunch, dinner, snacks).
+"""
+)
+
+chat_history = [system_message]
+
+while True:
+    user_input = input("You: ")
+
+    if user_input.lower() in ["exit", "quit"]:
+        break
+
+    chat_history.append(HumanMessage(content=user_input))
+
+    response = model.invoke(chat_history)
+    chat_history.append(response)
+
+    print("Model:", response.content)
+    
+
+
+```
