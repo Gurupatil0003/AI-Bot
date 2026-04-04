@@ -431,3 +431,39 @@ while True:
 
 
 ```
+
+```python
+from transformers import pipeline
+classifier = pipeline('sentiment-analysis')
+text = "I love this product! It's amazing and works perfectly."
+result = classifier(text)
+print(f"Sentiment: {result}")
+
+```
+
+```python
+
+text = """
+Face expression is the significant device in computer apparition and a predictable knowledge discovery application in automation, personal security and moveable devices. However, the state-of-the-art machine and deep learning (DL) methods has complete this technology game altering and even better human matching part in terms of accurateness. This paper focuses on put on one of the progressive deep learning tools in face expression to achieve higher accuracy. In this paper, we focusses on Automatic Facial Expressions and Identification of different face reactions using Convolution Neural Network.  Here, we framed our own data and trained by convolution neural networks. Human behavior can be easily predicted using their facial expression, which helps marketing team, psychological team and other required team to understand the human facial expression more clearly.
+Human behavior can be easily predicted using their facial expression, which helps marketing team, psychological team and other required team to understand the human facial expression more clearly. In Video feed and other feeds provide good recommendations to the users. We can provide good environment to the user of the corresponding product helps the company to improve its customer base.
+
+"""
+
+```
+
+```python
+image_captioner = pipeline("image-to-text")
+image = r'/content/download.jfif'
+cation = image_captioner(image)
+print(cation)
+
+```
+
+```python
+vqa_pipeline = pipeline('visual-question-answering') #visual q and a
+image = r'/content/download.jfif'
+question = input('Enter a question to ask about image: ')
+result = vqa_pipeline(image, question)
+print(result)
+
+```
