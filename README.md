@@ -467,3 +467,43 @@ result = vqa_pipeline(image, question)
 print(result)
 
 ```
+
+```python
+import requests
+import json
+
+API_KEY = "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"
+
+url = "https://openrouter.ai/api/v1/chat/completions"
+
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+
+print("🤖 Chat started (type 'exit' to quit)\n")
+
+while True:
+    user_input = input("You: ")
+
+    if user_input.lower() in ["exit", "quit"]:
+        print("👋 Chat ended")
+        break
+
+    response = requests.post(
+        url,
+        headers=headers,
+        json={
+            "model": "openrouter/free",
+            "messages": [{"role": "user", "content": user_input}]
+        }
+    )
+
+    result = response.json()
+
+    if "choices" in result:
+        print("\n🤖 Bot:", result["choices"][0]["message"]["content"], "\n")
+    else:
+        print("\n⚠️ API Error:\n", result, "\n")
+
+```
