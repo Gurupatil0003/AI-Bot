@@ -507,3 +507,34 @@ while True:
         print("\n⚠️ API Error:\n", result, "\n")
 
 ```
+
+```python
+import pandas as pd
+import gradio as gr
+from sklearn.linear_model import LinearRegression
+
+# Data
+df = pd.read_csv("/content/Salary Data (2) (1).csv")
+
+# Encode (simple)
+df = pd.get_dummies(df)
+
+X = df.drop("Salary", axis=1)
+y = df["Salary"]
+
+# Train model
+model = LinearRegression().fit(X, y)
+
+# Prediction function (VERY SIMPLE)
+def predict(age, exp):
+    return int(model.predict([[age, exp] + [0]*(X.shape[1]-2)])[0])
+
+# UI
+gr.Interface(
+    fn=predict,
+    inputs=["number","number"],
+    outputs="text",
+    title="Salary Predictor (Simple)"
+).launch()
+
+```
